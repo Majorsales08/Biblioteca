@@ -1,0 +1,169 @@
+body {
+    font-family: Arial, sans-serif;
+    background-color: #17224d;
+}
+
+.titulo{
+    color: #fff; 
+    padding: 2vh; /* Adiciona um espaçamento interno para não colar no canto */
+    position: relative;
+    display: flex;
+    justify-content:right;
+    right: 22vh;
+    font-family:'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+}
+
+#areas_container {
+    background-color: #f68046;
+    border-radius: 4vh;
+    width: 65vh;
+    height: 70vh;
+    position: relative; /* Mantém relative para permitir posicionamento absoluto do filho */
+    left: 125vh;
+    text-align: center;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    color: #0f1944;
+    margin-bottom: 10vh; /* Adiciona espaço abaixo do container para o h5 */
+}
+
+
+nav{
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end; /* Empurra o texto para baixo */
+    height: 47vh; /* Defina uma altura para a div */
+    right: -6vh;
+    margin-top: -5vh;
+    text-align: left;
+    font-family:Sans-serif;
+    
+}
+
+p{
+    color: #17224d; 
+    padding: 2vh; /* Adiciona um espaçamento interno para não colar no canto */
+    position: relative;
+    display: flex;
+    justify-content:right;
+    right: 11vh;
+    font-family:'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+}
+
+
+#tituloh2{
+    top:10vh;
+}
+
+
+button {
+    background-color: #fff;
+    color: rgb(21, 25, 90);
+    border: none;
+    padding: 5vh 10vh;
+    border-radius: 5vh;
+    width: 55vh;
+    height: 13vh;
+    font-family: sans-serif;
+    font-weight: bold;
+    font-size: 1.1em;
+    margin-top: 4vh; /* Aumentei o espaçamento para 5vh (ajuste conforme necessário) */
+}
+
+
+button:hover {
+
+    background-color: #ff6600ad;
+}
+
+h5 {
+    color: #ccc;
+    text-align: center;
+    position: relative; /* Permite ajustar a posição */
+    left: 125vh; /* Alinha com o container (mesmo left) */
+    width: 65vh; /* Mesma largura do container */
+    margin-top: -4vh; /* Espaço entre o container e o h5 */
+    font-size: medium;
+}
+
+
+
+
+/*AREAS ALUNOS E BIBLIOTECARIO*/
+
+
+
+.login-estudante {
+
+    background-color: #f68046;
+    padding: 20vh;
+    margin:70vh auto;
+    width: 110vh;
+    border-radius: 8vh;
+    height: 50vh;
+    box-shadow: 0 0 10vh rgba(0, 0, 0, 0.1);
+}
+
+
+h3{
+    font-size: 5vh;
+    color:#0f1944;
+    text-align: center;
+    margin-top: -14vh;
+    
+
+}
+
+
+h4{
+    color:#0f1944;
+    text-align: center;
+    margin-top: -4vh;
+}
+
+
+input {
+    padding: 8px;
+    border: 1px solid #ccc;
+    border-radius: 15px;
+    width: 94vh;
+    height: 9vh;
+    margin-top: 5vh;
+}
+
+
+select{
+    padding: 8px;
+    margin: 15px;
+    display: flex;
+    border: 1px solid #ccc;
+    border-radius: 15px;
+    width: 94vh;
+    height: 9vh;
+    justify-content: center;
+}
+
+
+
+
+.login-biblioteca {
+
+    background-color: #f68046;
+    padding: 20vh;
+    margin: 80vh auto;
+    width: 100vh;
+    border-radius: 7vh;
+    height: 50vh;
+    box-shadow: 0 0 10vh rgba(0, 0, 0, 0.1);
+}
+
+.login-cadastrar {
+
+    background-color: #f68046;
+    padding: 20vh;
+    margin: 80vh auto;
+    width: 100vh;
+    border-radius: 7vh;
+    height: 50vh;
+    box-shadow: 0 0 10vh rgba(0, 0, 0, 0.1);
+}
