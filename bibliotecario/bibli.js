@@ -1,6 +1,6 @@
 function catalogarLivros() {
 
-    window.location.href = "catalogar\catalogar.html";
+    window.location.href = "catalogar\cata.html";
 }
 
 function registrarEmprestimo() {

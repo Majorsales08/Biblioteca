@@ -1,4 +1,3 @@
-
 function mostrarCadastroAluno() {
     document.getElementById('login-aluno').style.display = 'none';
     document.getElementById('cadastro-aluno').style.display = 'block';
