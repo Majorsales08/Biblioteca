@@ -1,12 +1,74 @@
-#catalogar {
-    background-color: #f68046;
-    border-radius: 4vh;
-    width: 65vh;
-    height: 70vh;
-    position: relative; /* Mantém relative para permitir posicionamento absoluto do filho */
-    left: 125vh;
-    text-align: center;
-    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-    color: #0f1944;
-    margin-bottom: 10vh; /* Adiciona espaço abaixo do container para o h5 */
+
+body{
+    background-color:#0f1944
+}
+
+#formulario {
+    height: 30%;
+}
+
+
+main#formulario {
+  max-width: 500px;
+  margin: 40px auto;
+  padding: 20px;
+  background: #f68046;
+  border-radius: 12px;
+  box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+}
+
+h3 {
+  text-align: center;
+  color: #333;
+  margin-bottom: 20px;
+}
+
+input[type="text"], input[type="file"] {
+  width: 100%;
+  padding: 10px;
+  margin: 8px 0;
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  font-size: 14px;
+}
+
+button {
+  width: 100%;
+  padding: 12px;
+  background: #0077cc;
+  border: none;
+  color: white;
+  font-size: 16px;
+  font-weight: bold;
+  border-radius: 8px;
+  cursor: pointer;
+  margin-top: 10px;
+  transition: background 0.3s;
+}
+
+button:hover {
+  background: #005fa3;
+}
+
+#listaLivros {
+  margin-top: 20px;
+}
+
+.livroCard {
+  padding: 10px;
+  margin: 10px 0;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  background: #fafafa;
+}
+
+.livroCard strong {
+  color: #0077cc;
+}
+
+.imagemdolivro{
+    display:none; 
+    max-width: 120px;
+     margin-top: 10px;
+     border-radius: 8px;
 }
