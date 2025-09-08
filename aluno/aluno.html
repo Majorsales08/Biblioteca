@@ -9,10 +9,7 @@
 
 </head>
 
-  <header>
-    <input type="text" placeholder="Título, gênero do livro..." class="search-bar" />
-
-    <div class="profile">
+  <div class="profile">
       <img src="https://via.placeholder.com/32" alt="Perfil" />
       <span>Nome do aluno</span>
       <span class="arrow">▼</span>
@@ -20,19 +17,45 @@
   </header>
 
   <main class="grid">
-    <div class="card">
-      <span>📖</span>
+    <button class="card" onclick="mostrarSecao('disponiveis')">
+      
       <p>Livros disponíveis</p>
-    </div>
-    <div class="card">
-      <span>📦</span>
+    </button>
+    <button class="card" onclick="mostrarSecao('sugestoes')">
+      
       <p>Sugestão de livros</p>
-    </div>
-    <div class="card">
-      <span>📚</span>
+    </button>
+    <button class="card" onclick="mostrarSecao('historico')">
+      
       <p>Histórico de livros</p>
-    </div>
+    </button>
     <div class="card empty"></div>
   </main>
+
+  <!-- Seção: Livros disponíveis -->
+  <section id="disponiveis" class="secao" style="display:none;">
+    <h2>Livros Disponíveis</h2>
+    <div id="listaLivros"></div>
+  </section>
+
+  <!-- Seção: Sugestão de livros -->
+  <section id="sugestoes" class="secao" style="display:none;">
+    <h2>Deixe sua Sugestão</h2>
+    <form id="formSugestao">
+      <input type="text" id="sugestaoLivro" placeholder="Digite o nome do livro" required><br>
+      <button type="submit">Enviar</button>
+    </form>
+    <div id="sugestoesList"></div>
+  </section>
+
+  <!-- Seção: Histórico -->
+  <section id="historico" class="secao" style="display:none;">
+    <h2>Histórico de Empréstimos</h2>
+    <div id="historicoList"></div>
+  </section>
+
+  <script src="al.js"></script>
+
+
 </body>
 </html>

@@ -10,7 +10,6 @@
 
 <body>
   <header>
-    <input type="text" placeholder="Pesquisar..." class="search-bar" />
 
     <div class="profile">
       <img src="https://via.placeholder.com/32" alt="Perfil" />
@@ -19,18 +18,51 @@
   </header>
 
   <main class="grid">
-
-    <div class="card">
-      <button><a href="../catalogar/cata.html">Catalogar Livros</a></button>
-    </div>
-
-
-    <div class="card">Controle de empréstimo</div>
-    <div class="card">Livros catalogados</div>
-    <div class="card">Registro de empréstimo</div>
-
+    <button onclick="mostrarSecao('controle')">Controle de empréstimos</button><br>
+    <button onclick="mostrarSecao('livro')">Livros registrados</button><br>
+    <button onclick="mostrarSecao('catalogar')">Catalogar Livro</button><br>
+    <button onclick="mostrarSecao('registro')">Registrar empréstimo</button>
   </main>
 
+  <!-- Controle de empréstimos -->
+  <section id="controle" class="secao" style="display:none;">
+    <h2>Controle de Empréstimos</h2>
+    <div id="emprestimosList"></div>
+  </section>
+
+  <!-- Livros Registrados -->
+  <section id="livro" class="secao" style="display:none;">
+    <h2>Livros Registrados</h2>
+    <div id="livrosList"></div>
+  </section>
+
+  <!-- Catalogar Livro -->
+  <section id="catalogar" class="secao" style="display:none;">
+    <h2>Catalogar Livro</h2>
+    <form id="formCatalogar">
+      <input type="text" id="nomeLivro" placeholder="Nome do Livro" required><br>
+      <input type="text" id="autorLivro" placeholder="Autor" required><br>
+      <input type="text" id="sobreLivro" placeholder="Sobre o Livro" required><br>
+      <input type="text" id="categoriaLivro" placeholder="Categoria" required><br>
+      <input type="text" id="codigoLivro" placeholder="Código" required><br>
+      <input type="file" id="imagemLivro" accept="image/*"><br>
+      <button type="submit">Catalogar</button>
+    </form>
+  </section>
+
+  <!-- Registrar Empréstimo -->
+  <section id="registro" class="secao" style="display:none;">
+    <h2>Registrar Empréstimo</h2>
+    <form id="formEmprestimo">
+      <input type="text" id="nomeAluno" placeholder="Nome do Aluno" required><br>
+      <input type="text" id="serieAluno" placeholder="Série do Aluno" required><br>
+      <input type="text" id="livroEmprestimo" placeholder="Nome do Livro" required><br>
+      <input type="date" id="dataEmprestimo" required><br>
+      <button type="submit">Registrar</button>
+    </form>
+  </section>
+
+  <script src="bibli.js"></script>
 
 
 </body>

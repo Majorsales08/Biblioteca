@@ -1,100 +1,136 @@
 * {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-    font-family: "Segoe UI", sans-serif;
-  }
-  
-  body {
-    background-color: #0c1f4a;
-    color: #1c1c1c;
-    padding: 2rem;
-  }
-  
-  header {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    margin-bottom: 3rem;
-  }
-  
-  .search-bar {
-    padding: 0.8rem 1rem;
-    border: none;
-    border-radius: 30px;
-    width: 50%;
-    font-size: 1rem;
-    background-color: #f87e3e;
-    color: #1c1c1c;
-  }
-  
-  .search-bar::placeholder {
-    color: #1c1c1c;
-  }
-  
-  .search-btn {
-    margin-left: -2.5rem;
-    background: none;
-    border: none;
-    font-size: 1.2rem;
-    cursor: pointer;
-  }
-  
-  .profile {
-    display: flex;
-    align-items: center;
-    background-color: #f87e3e;
-    padding: 0.5rem 1rem;
-    border-radius: 30px;
-    gap: 0.5rem;
-    cursor: pointer;
-  }
-  
-  .profile img {
-    width: 32px;
-    height: 32px;
-    border-radius: 50%;
-    background-color: #0c1f4a;
-  }
-  
-  .grid {
-    display: grid;
-    grid-template-columns: repeat(2, 200px);
-    gap: 2rem;
-  }
-
-  
-  
-  .card {
-    background-color: #f87e3e;
-    border-radius: 15px;
-    padding: 1.5rem;
-    height: 110px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    font-weight: bold;
-    font-size: 1rem;
-    cursor: pointer;
-    text-align: center;
-    transition: transform 0.2s ease;
-  }
-  
-  .card:hover {
-    transform: scale(1.05);
-  }
-  
-a{
-  text-decoration: none;
-  color: inherit;
-  background-color:#f87e3e;
-  font-size: 16px;
-  font-weight: bold;
-  border-color:#f87e3e ;
-
-
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: "Segoe UI", sans-serif;
 }
 
-button{
-  border:#f87e3e;
+body {
+  background-color: #0c1f4a;
+  color: #ffffff;
+  padding: 2rem;
+}
+
+/* Cabeçalho */
+header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 3rem;
+}
+
+.profile {
+  display: flex;
+  align-items: center;
+  background-color: #f87e3e;
+  padding: 0.5rem 1rem;
+  border-radius: 30px;
+  gap: 0.5rem;
+  cursor: pointer;
+  color: #0c1f4a;
+  font-weight: bold;
+}
+
+.profile img {
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  background-color: #0c1f4a;
+}
+
+/* Botões principais */
+.grid {
+  display: grid;
+  grid-template-columns: repeat(2, 200px);
+  gap: 2rem;
+  margin-bottom: 2rem;
+}
+
+.grid button {
+  background-color: #f87e3e;
+  border-radius: 15px;
+  padding: 1.5rem;
+  height: 110px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: bold;
+  font-size: 1rem;
+  cursor: pointer;
+  text-align: center;
+  transition: transform 0.2s ease, background 0.3s;
+  border: none;
+  color: #0c1f4a;
+}
+
+.grid button:hover {
+  transform: scale(1.05);
+  background-color: #ff9a66;
+}
+
+/* Links */
+a {
+  text-decoration: none;
+  color: inherit;
+  font-size: 16px;
+  font-weight: bold;
+}
+
+/* Seções */
+.secao {
+  background-color: #ffffff;
+  color: #1c1c1c;
+  padding: 2rem;
+  border-radius: 15px;
+  margin-top: 1rem;
+  display: none; /* escondida até ser chamada pelo JS */
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+.secao h2 {
+  margin-bottom: 1rem;
+  color: #0c1f4a;
+}
+
+/* Inputs e botões dentro dos formulários */
+form input, form select {
+  width: 100%;
+  padding: 0.8rem;
+  margin: 0.5rem 0;
+  border: 1px solid #ccc;
+  border-radius: 10px;
+  font-size: 1rem;
+}
+
+form button {
+  background-color: #f87e3e;
+  border: none;
+  padding: 0.8rem 1.2rem;
+  border-radius: 10px;
+  cursor: pointer;
+  font-size: 1rem;
+  font-weight: bold;
+  margin-top: 1rem;
+  transition: background 0.3s;
+  color: #0c1f4a;
+}
+
+form button:hover {
+  background-color: #ff9a66;
+}
+
+/* Lista de empréstimos */
+#emprestimosList p {
+  background: #f0f0f0;
+  padding: 0.8rem;
+  border-radius: 10px;
+  margin-bottom: 0.5rem;
+  color: #0c1f4a;
+  font-weight: bold;
+}
+
+/* Animação suave ao abrir seção */
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(10px); }
+  to { opacity: 1; transform: translateY(0); }
 }
