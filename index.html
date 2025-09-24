@@ -18,14 +18,19 @@
             <p>Escolha abaixo um perfil acessar<p>
         <nav>
             <h2>SOU</h2>
-            <button onclick="mostrarLogin('aluno')"> ESTUDANTE</button>
+            <a href="#login-container">
+
+                <button onclick="mostrarLogin('aluno')"> ESTUDANTE</button>
+            </a>
             <h2>SOU</h2>
-            <button onclick="mostrarLogin('bibliotecario')">BIBLIOTECÁRIA(O)</button>
+            <a href = '#login-bibliotecario'>
+                <button onclick="mostrarLogin('bibliotecario')">BIBLIOTECÁRIA(O)</button>
+            </a>
+            
         </nav>
         
     </div>
-
-        <h5>Não tem uma conta?<br> Cadastre-se agora <a href="#" onclick="mostrarCadastroAluno()">Cadastre-se</a></h5>
+        
     
     <main id="login-container">
         <div id="login-aluno" class="login-estudante"  style="display: none;">
@@ -37,6 +42,9 @@
             <input type="password" id="aluno-senha" placeholder="Senha">
    
                 <button onclick="loginAluno()">Entrar</button>
+
+                <h5>Não tem uma conta?<br> Cadastre-se agora <a href="#cadastro-aluno" onclick="mostrarCadastroAluno()">Cadastre-se</a></h5> 
+
                 
         </div>
 

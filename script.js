@@ -49,7 +49,6 @@ function loginBibliotecario() {
     
 }
 
-
 function mostrarLogin(tipo) {
     // Oculta todos os formulários primeiro
     document.getElementById('login-aluno').style.display = 'none';
