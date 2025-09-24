@@ -16,10 +16,10 @@ body {
 #areas_container {
     background-color: #f68046;
     border-radius: 4vh;
-    width: 65vh;
+    width: 67vh;
     height: 70vh;
     position: relative; /* Mantém relative para permitir posicionamento absoluto do filho */
-    left: 125vh;
+    left: 115vh;
     text-align: center;
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
     color: #0f1944;
@@ -80,7 +80,7 @@ h5 {
     color: #ccc;
     text-align: center;
     position: relative; /* Permite ajustar a posição */
-    left: 125vh; /* Alinha com o container (mesmo left) */
+    left: 115vh; /* Alinha com o container (mesmo left) */
     width: 65vh; /* Mesma largura do container */
     margin-top: -4vh; /* Espaço entre o container e o h5 */
     font-size: medium;

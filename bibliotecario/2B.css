@@ -80,15 +80,17 @@ a {
 .secao {
   background-color: #ffffff;
   color: #1c1c1c;
-  padding: 2rem;
+  padding: 45px;
   border-radius: 15px;
-  margin-top: 1rem;
+  margin-top: -570px;
   display: none; /* escondida até ser chamada pelo JS */
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
   animation: fadeIn 0.5s ease-in-out; 
   border-radius: 15px;
   color: #0c1f4a;
   font-weight: bold; 
+  width: 1085px;
+  margin-left: 270px;
   
 
 }
