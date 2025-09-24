@@ -25,6 +25,7 @@ let emprestimos = [];
       this.reset();
       carregarLivros();
       mostrarSecao("livro");
+
     });
 
     function carregarLivros() {
@@ -59,6 +60,7 @@ let emprestimos = [];
       emprestimos = JSON.parse(localStorage.getItem("emprestimos")) || [];
       emprestimos.push({ nome, serie, livro, dias, status: "emprestado" });
       localStorage.setItem("emprestimos", JSON.stringify(emprestimos));
+      
 
       // também salva no histórico do aluno
       let historico = JSON.parse(localStorage.getItem("historicoAluno")) || [];
@@ -68,6 +70,7 @@ let emprestimos = [];
       this.reset();
       atualizarListaEmprestimos();
       mostrarSecao("controle");
+      
     });
 
     function atualizarListaEmprestimos() {
@@ -80,11 +83,24 @@ let emprestimos = [];
         return;
       }
 
-      emprestimos.forEach(emp => {
-        const item = document.createElement("p");
-        item.textContent = `${emp.nome} (${emp.serie}) está com "${emp.livro}" há ${emp.dias} dias. Status: ${emp.status}`;
+      emprestimos.forEach((emp, idx) => {
+        const item = document.createElement("div");
+        item.innerHTML = `
+          <span>${emp.nome} (${emp.serie}) está com "${emp.livro}" há ${emp.dias} dias. Status: ${emp.status}</span>
+          <button onclick="finalizarEmprestimo(${idx})">Finalizar Empréstimo</button>
+        `;
         lista.appendChild(item);
       });
+    }
+
+    // Função para finalizar empréstimo
+    function finalizarEmprestimo(idx) {
+      emprestimos = JSON.parse(localStorage.getItem("emprestimos")) || [];
+      if (emprestimos[idx]) {
+        emprestimos[idx].status = "finalizado";
+        localStorage.setItem("emprestimos", JSON.stringify(emprestimos));
+        atualizarListaEmprestimos();
+      }
     }
 
     // --- Sugestões dos alunos ---
