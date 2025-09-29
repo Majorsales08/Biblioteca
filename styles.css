@@ -79,14 +79,8 @@ h5 {
     color: #ccc;
     text-align: center;
     position: relative; /* Permite ajustar a posição */
-<<<<<<< HEAD
     width: 280px; /* Mesma largura do container */
     margin-top: 10px; /* Espaço entre o container e o h5 */
-=======
-    left: 115vh; /* Alinha com o container (mesmo left) */
-    width: 65vh; /* Mesma largura do container */
-    margin-top: -4vh; /* Espaço entre o container e o h5 */
->>>>>>> ed7aaa0893b71c51a3de452951e099a529c70445
     font-size: medium;
 }
 
