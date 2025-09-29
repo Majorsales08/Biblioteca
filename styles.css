@@ -60,7 +60,7 @@ button {
     background-color: #fff;
     color: rgb(21, 25, 90);
     border: none;
-    border-radius: 5vh;
+    border-radius: 4vh;
     width: 50vh;
     height: 10vh;
     font-family: sans-serif;
@@ -73,6 +73,12 @@ button {
 button:hover {
 
     background-color: #ff6600ad;
+}
+
+#login-estudante button{
+   display: flex;
+   right: 100px;
+   
 }
 
 h5 {
