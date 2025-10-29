@@ -9,21 +9,40 @@ body {
     position: relative;
     display: flex;
     justify-content:right;
-    right: 22vh;
+    right: 15vh;
     font-family:'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
 }
+
+#manual {
+    background-color:  #2b386d;
+    border-radius: 4vh;
+    width: 90vh;
+    height: 77vh;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    color: #ffffff;
+    margin-top: 3vh;
+    text-align: center;
+    
+}
+
+#manual h2{
+    color:#f68046;
+    
+}
+
 
 #areas_container {
     background-color: #f68046;
     border-radius: 4vh;
-    width: 67vh;
-    height: 70vh;
+    width: 74vh;
+    height: 74vh;
     position: relative; /* Mantém relative para permitir posicionamento absoluto do filho */
-    left: 115vh;
+    left: 63vh;
     text-align: center;
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
     color: #0f1944;
-    margin-bottom: 10vh; /* Adiciona espaço abaixo do container para o h5 */
+    margin: -75vh auto;
+    margin-top: -80vh;
 }
 
 
