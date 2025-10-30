@@ -25,6 +25,8 @@ body {
     margin-left: 9vh;
     
 }
+
+
 #manual p{
     color:#ffffff;
     text-align: justify;
@@ -32,18 +34,22 @@ body {
     margin-right: 4vh;
 }
 
-#manual ol{
+#manual li{
     color:#ffffff;
     text-align: justify;
-    margin-left: 10vh;
-    margin-right: 15vh;
+    margin-right: 4vh;
+    font-size: small;
 }
 
 #manual h2{
     color:#f68046;
     text-align: center;
 }
-
+ #manual h5{
+    color:#ffffff;
+    text-align: left;
+    font-size: small;
+ }
 
 #areas_container {
     background-color: #f68046;
