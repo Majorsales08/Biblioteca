@@ -22,12 +22,26 @@ body {
     color: #ffffff;
     margin-top: 3vh;
     text-align: center;
+    margin-left: 9vh;
     
+}
+#manual p{
+    color:#ffffff;
+    text-align: justify;
+    margin-left: 10vh;
+    margin-right: 4vh;
+}
+
+#manual ol{
+    color:#ffffff;
+    text-align: justify;
+    margin-left: 10vh;
+    margin-right: 15vh;
 }
 
 #manual h2{
     color:#f68046;
-    
+    text-align: center;
 }
 
 
