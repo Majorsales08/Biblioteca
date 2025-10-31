@@ -62,3 +62,25 @@ function mostrarLogin(tipo) {
         document.getElementById('login-bibliotecario').style.display = 'block';
     }
 }
+
+// Toggle do manual (seta)
+document.addEventListener('DOMContentLoaded', () => {
+  const toggle = document.getElementById('manualToggle');
+  const manual = document.getElementById('manual');
+  if (!toggle || !manual) return;
+
+  function setOpen(open){
+    manual.style.display = open ? 'block' : 'none';
+    toggle.classList.toggle('open', open);
+    toggle.setAttribute('aria-expanded', String(open));
+  }
+
+  // clique e teclado (Enter / Espaço)
+  toggle.addEventListener('click', () => setOpen(manual.style.display === 'none'));
+  toggle.addEventListener('keydown', (e) => {
+    if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); toggle.click(); }
+  });
+
+  // inicializa fechado (ou troque para true para abrir por padrão)
+  setOpen(false);
+});

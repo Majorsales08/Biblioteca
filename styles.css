@@ -42,7 +42,7 @@ body {
     color:#ffffff;
     text-align: justify;
     margin-right: 4vh;
-    font-size: small;
+    font-size: medium;
 }
 
 #subtitulo{
@@ -51,7 +51,7 @@ body {
     margin-top: -5vh;
    
 }
- #manual h5{
+ #manual h4{
     color:#ffffff;
     text-align: left;
     font-size: small;
