@@ -10,77 +10,84 @@
 
 <body>
     <div class="titulo">
-        <h1>Biblioteca Amilcare</h1>
+        <h1>Biblioteca Escolar</h1>
     </div>
 
-    <div id="subtitulo">
-        <h2>VOCÊ CONHECE A BIBLIOTECA AMILCARE?</h2>
-    </div>
-    
+   
+
     <div id="manual">
-       
-    <ol>
-        <h5>
-            Área do Aluno
-        </h5>
-        <li>
-            Cadastro
-            Clique em “Cadastrar” na página inicial.
-            Preencha os campos com seus dados (nome, senha e série).
-            Após o cadastro, faça login com seu nome e senha.
-        </li>
-        <li>
-            Login
-            Acesse o botão “Entrar” e insira seus dados.
-            Se os dados estiverem corretos, você será redirecionado ao painel do aluno.
-        </li>
-        <li>
-            Livros Disponíveis
+        <h2>VOCÊ CONHECE A BIBLIOTECA ESCOLAR?</h2>
 
-            No painel principal, clique em “Livros Disponíveis”, você verá uma lista com os títulos, autores, e
-            disponibilidade.
-            Utilize a barra de pesquisa para encontrar um livro específico.
-        </li>
-        <li>
-            Histórico de Empréstimos
-            Acesse o menu “Meus Empréstimos”, veja os livros emprestados, datas de retirada e devolução.
-        </li>
-        <li>
-            Caixa de Sugestões
-            Clique em “Sugerir Livro” para indicar obras que gostaria de ver na biblioteca.
-            Escreva o nome do livro e o autor e envie sua sugestão.
-        </li>
-    </ol>
-    <ol>
-        <h5>
-            Área do Bibliotecário
-        </h5>
-        <li>
-            Login
-            *SOMENTE O BIBLIOTECARIO TEM ACESSO.
-        </li>
-        <li>
-             Cadastro de Livros
-            Clique em “Cadastrar Livro”, você pode inserir o ISBN ou código de barras para buscar automaticamente as
-            informações do livro
-            (título, autor, editora etc.).
-        </li>
-        <li>
-             Livros Catalogados
-            Em “Livros Catalogados”, visualize todos os livros cadastrados no sistema.
-        </li>
-        <li>
-             Cadastro de Alunos
-            Acesse “Cadastrar Aluno” para inserir novos usuários manualmente, caso precisem de ajuda com o registro.
-        </li>
-        <li>
-             Controle de Empréstimos
+        <div class="manual01">
+            <ol>
 
-            Vá até “Empréstimos”.
+                <h5>
+                    Área do Aluno
+                </h5>
+                <li>
+                    Cadastro
+                    Clique em “Cadastrar” na página inicial.
+                    Preencha os campos com seus dados (nome, senha e série).
+                    Após o cadastro, faça login com seu nome e senha.
+                </li>
+                <li>
+                    Login
+                    Acesse o botão “Entrar” e insira seus dados.
+                    Se os dados estiverem corretos, você será redirecionado ao painel do aluno.
+                </li>
+                <li>
+                    Livros Disponíveis
 
-            Registre novos empréstimos informando: aluno, série, livro e prazo de devolução.
-        </li>
-    </ol> 
+                    No painel principal, clique em “Livros Disponíveis”, você verá uma lista com os títulos, autores, e
+                    disponibilidade.
+                    Utilize a barra de pesquisa para encontrar um livro específico.
+                </li>
+                <li>
+                    Histórico de Empréstimos
+                    Acesse o menu “Meus Empréstimos”, veja os livros emprestados, datas de retirada e devolução.
+                </li>
+                <li>
+                    Caixa de Sugestões
+                    Clique em “Sugerir Livro” para indicar obras que gostaria de ver na biblioteca.
+                    Escreva o nome do livro e o autor e envie sua sugestão.
+                </li>
+            </ol>
+        </div>
+
+        <div class="manual02">
+            <ol>
+                <h5>
+                    Área do Bibliotecário
+                </h5>
+                <li>
+                    Login
+                    *SOMENTE O BIBLIOTECARIO TEM ACESSO.
+                </li>
+                <li>
+                    Cadastro de Livros
+                    Clique em “Cadastrar Livro”, você pode inserir o ISBN ou código de barras para buscar
+                    automaticamente as
+                    informações do livro
+                    (título, autor, editora etc.).
+                </li>
+                <li>
+                    Livros Catalogados
+                    Em “Livros Catalogados”, visualize todos os livros cadastrados no sistema.
+                </li>
+                <li>
+                    Cadastro de Alunos
+                    Acesse “Cadastrar Aluno” para inserir novos usuários manualmente, caso precisem de ajuda com o
+                    registro.
+                </li>
+                <li>
+                    Controle de Empréstimos
+
+                    Vá até “Empréstimos”.
+
+                    Registre novos empréstimos informando: aluno, série, livro e prazo de devolução.
+                </li>
+            </ol>
+        </div>
 
     </div>
 
@@ -88,6 +95,7 @@
         <h2>OLÁ, NOVAMENTE!</h2>
         <p>Escolha abaixo um perfil acessar
         <p>
+
         <nav>
             <h2>SOU</h2>
             <a href="#login-container">
@@ -115,18 +123,18 @@
 
             <button onclick="loginAluno()">Entrar</button>
 
-            <h5>Não tem uma conta?<br> Cadastre-se agora <a href="#cadastro-aluno"
-                    onclick="mostrarCadastroAluno()">Cadastre-se</a></h5>
-
+             <h5>Não tem uma conta? Cadastre-se agora <a href="#cadastro-aluno" onclick="mostrarCadastroAluno()">Cadastre-se</a></h5>
 
         </div>
-
+       
         <div id="cadastro-aluno" class="login-cadastrar" style="display: none;">
             <h3>Cadastro de Aluno</h3>
             <h4>Preencha seus dados abaixo para acessar o sistema</h4>
 
-            <input type="text" id="novo-aluno-nome" placeholder="Nome Completo">
+            <input type="text" id="novo-aluno-nome" placeholder="Nome Completo"> 
+            <input type= "email" id="aluno-email" placeholder="Email institucional">
             <input type="password" id="novo-aluno-senha" placeholder="Senha">
+           
 
             <select id="aluno-serie">
                 <option value="1">1º Ano</option>
@@ -147,7 +155,48 @@
             <button onclick="loginBibliotecario()">Entrar</button>
 
         </div>
+
+        <!-- Help button (coloque dentro do login-container, por exemplo após os formulários) -->
+        <button id="helpButton" class="help-button" aria-haspopup="dialog" aria-controls="helpModal">
+            ?
+        </button>
     </main>
+
+    <!-- Help modal (adicione antes do script.js) -->
+    <div id="helpModal" class="help-modal" role="dialog" aria-modal="true" aria-hidden="true" style="display:none;">
+      <div class="help-content">
+        <button class="help-close" id="helpClose" aria-label="Fechar">✕</button>
+        <h3>Ajuda</h3>
+
+        <div class="help-tabs">
+          <button class="tab active" data-tab="ask">Fazer pergunta</button>
+          <button class="tab" data-tab="faq">Perguntas frequentes</button>
+          <button class="tab" data-tab="minhas">Minhas perguntas</button>
+        </div>
+
+        <div class="tab-panel" id="tab-ask">
+          <form id="helpForm">
+            <label for="helpName">Nome (opcional)</label>
+            <input id="helpName" type="text" placeholder="Seu nome">
+            <label for="helpQuestion">Pergunta</label>
+            <textarea id="helpQuestion" rows="4" placeholder="Escreva sua pergunta..."></textarea>
+            <button type="submit">Enviar pergunta</button>
+            <p id="helpFeedback" class="help-feedback" aria-live="polite"></p>
+          </form>
+        </div>
+
+        <div class="tab-panel" id="tab-faq" style="display:none;">
+          <ul class="faq-list" id="faqList">
+            <!-- FAQ será preenchida via script -->
+          </ul>
+        </div>
+
+        <div class="tab-panel" id="tab-minhas" style="display:none;">
+          <ul id="minhasPerguntas" class="minhas-list"></ul>
+        </div>
+
+      </div>
+    </div>
 
     <script src="script.js"></script>
 </body>

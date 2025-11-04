@@ -3,101 +3,109 @@ body {
     background-color: #17224d;
 }
 
-.titulo{
-    color: #fff; 
-    padding: 2vh; /* Adiciona um espaçamento interno para não colar no canto */
+.titulo {
+    color: #fff;
+    padding: 2vh;
+    /* Adiciona um espaçamento interno para não colar no canto */
     position: relative;
     display: flex;
-    justify-content:right;
-    right: 15vh;
-    font-family:'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+    justify-content: right;
+    right: 18vh;
+    font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
 }
 
 #manual {
-    background-color:  #2b386d;
+    background-color: #2b386d;
     border-radius: 4vh;
-    width: 90vh;
-    height: 83vh;
+    width: 80vh;
+    height: 75vh;
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-    color: #ffffff;
-    margin-top: 3vh;
-    text-align: center;
+    color: #f68046;
     margin-left: 9vh;
-}
-
-#manual ol{
-    color:#ffffff;
-    margin-bottom: 6vh;
-   
-}
-
-#manual p{
-    color:#ffffff;
-    text-align: justify;
-    margin-left: 10vh;
-    margin-right: 4vh;
-}
-
-#manual li{
-    color:#ffffff;
-    text-align: justify;
-    margin-right: 4vh;
-    font-size: medium;
-}
-
-#subtitulo{
-    color:#f68046;
-    margin-left: 10vh;
     margin-top: -5vh;
-   
+    text-align: center;
+
 }
- #manual h4{
-    color:#ffffff;
+
+.manual01 {
+    color: #ffffff;
+    margin-top: 10vh;
+
+}
+
+.manual02 {
+    color: #ffffff;
+    margin-top: 12vh;
+}
+
+#manual p {
+    color: #ffffff;
+    text-align: justify;
+    margin-left: 10vh;
+    margin-right: 4vh;
+}
+
+#manual li {
+    color: #ffffff;
+    text-align: justify;
+    margin-right: 4vh;
+    font-size: small;
+}
+
+
+#manual h5 {
+    color: #ffffff;
     text-align: left;
     font-size: small;
+    margin-top: -6vh;
+    display: flex;
 }
 
 #areas_container {
     background-color: #f68046;
     border-radius: 4vh;
-    width: 74vh;
-    height: 74vh;
-    position: relative; /* Mantém relative para permitir posicionamento absoluto do filho */
-    left: 63vh;
+    width: 64vh;
+    height: 64vh;
+    position: relative;
+    /* Mantém relative para permitir posicionamento absoluto do filho */
+    left: 56vh;
     text-align: center;
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
     color: #0f1944;
     margin: -75vh auto;
-    margin-top: -85vh;
+    margin-top: -72vh;
+
 }
 
 
-nav{
-    position: relative;
-    display: flex;
+nav {
+
     flex-direction: column;
-    justify-content: flex-end; /* Empurra o texto para baixo */
-    height: 47vh; /* Defina uma altura para a div */
-    right: -6vh;
-    margin-top: -5vh;
+    justify-content: flex-end;
+    /* Empurra o texto para baixo */
+    height: 47vh;
+    /* Defina uma altura para a div */
+    margin-top: -9vh;
     text-align: left;
-    font-family:Sans-serif;
-    
+    font-family: Sans-serif;
+    margin-left: 4vh;
+
 }
 
-p{
-    color: #17224d; 
-    padding: 2vh; /* Adiciona um espaçamento interno para não colar no canto */
+p {
+    color: #17224d;
+    padding: 2vh;
+    /* Adiciona um espaçamento interno para não colar no canto */
     position: relative;
     display: flex;
-    justify-content:right;
+    justify-content: right;
     right: 11vh;
-    font-family:'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+    font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
 }
 
 
-#tituloh2{
-    top:10vh;
+#tituloh2 {
+    top: 10vh;
 }
 
 
@@ -111,7 +119,9 @@ button {
     font-family: sans-serif;
     font-weight: bold;
     font-size: 1.1em;
-    margin-top: 4vh; /* Aumentei o espaçamento para 5vh (ajuste conforme necessário) */
+    margin-top: 4vh;/* Aumentei o espaçamento para 5vh (ajuste conforme necessário) */
+    margin-left: 2vh;
+    
 }
 
 
@@ -120,14 +130,32 @@ button:hover {
     background-color: #ff6600ad;
 }
 
+#login-aluno button {
+    margin-top: 15vh;
+    width: 100vh;
+    height: 9vh;
+}
+
+.login-biblioteca button {
+    margin-top: 15vh;
+    width: 100vh;
+    height: 9vh;
+}
+
+.login-cadastrar button {
+    margin-top: 40vh;
+    width: 100vh;
+    height: 9vh;
+}
 
 h5 {
-    color: #ccc;
+    color: #ffffff;
+    width: 55vh;/* Mesma largura do container */
+    margin-top: 10vh;/* Espaço entre o container e o h4 */
+    margin-left: 23vh;
     text-align: center;
-    position: relative; /* Permite ajustar a posição */
-    width: 280px; /* Mesma largura do container */
-    margin-top: 10px; /* Espaço entre o container e o h5 */
-    font-size: medium;
+    font-size: 16px;
+   
 }
 
 
@@ -140,26 +168,26 @@ h5 {
     background-color: #f68046;
     padding: 20vh;
     margin: 140vh auto;
-    width: 110vh;
+    width: 100vh;
     border-radius: 8vh;
-    height: 50vh;
+    height: 45vh;
     box-shadow: 0 0 10vh rgba(0, 0, 0, 0.1);
-   
+
 }
 
 
-h3{
+h3 {
     font-size: 5vh;
-    color:#0f1944;
+    color: #0f1944;
     text-align: center;
     margin-top: -14vh;
-    
+
 
 }
 
 
-h4{
-    color:#0f1944;
+h4 {
+    color: #0f1944;
     text-align: center;
     margin-top: -4vh;
 }
@@ -169,21 +197,23 @@ input {
     padding: 8px;
     border: 1px solid #ccc;
     border-radius: 20px;
-    width: 650px;
+    width: 680px;
     height: 45px;
-    margin-top: 5vh;
+    margin-top: 3vh;
+    margin-left: 5vh;
 }
 
 
-select{
+select {
     padding: 8px;
-    margin: 15px;
+    margin-left: 100vh;
+    margin-top: -31vh;
     display: flex;
     border: 1px solid #ccc;
     border-radius: 15px;
-    width: 94vh;
-    height: 9vh;
-    justify-content: center;
+    width: 11vh;
+    height: 7vh;
+   
 }
 
 
@@ -194,7 +224,7 @@ select{
     margin: 140vh auto;
     width: 100vh;
     border-radius: 7vh;
-    height: 50vh;
+    height: 45vh;
     box-shadow: 0 0 10vh rgba(0, 0, 0, 0.1);
 }
 
@@ -205,6 +235,164 @@ select{
     margin: 140vh auto;
     width: 100vh;
     border-radius: 7vh;
-    height: 50vh;
+    height: 45vh;
     box-shadow: 0 0 10vh rgba(0, 0, 0, 0.1);
 }
+
+/* ajuda */
+.help-button {
+    position: relative;
+    background: #ffffff;
+    color: #1e2a5c;
+    border: none;
+    border-radius: 50px;
+    padding: 10px 14px;
+    cursor: pointer;
+    box-shadow: 0 6px 18px rgba(0, 0, 0, 0.12);
+    width: 40px;
+    height: 40px;
+    margin-top: -50vh;
+}
+
+.help-button:hover {
+    transform: translateY(-2px);
+}
+
+/* Modal */
+.help-modal {
+    position: fixed;
+    inset: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: rgba(2, 8, 23, 0.6);
+    z-index: 9999;
+    padding: 20px;
+}
+
+.help-content {
+    background: #fff;
+    color: #0c1f4a;
+    width: 420px;
+    max-width: calc(100% - 40px);
+    border-radius: 12px;
+    padding: 18px;
+    position: relative;
+    box-shadow: 0 20px 50px rgba(2, 8, 23, 0.6);
+}
+
+.help-close {
+    position: absolute;
+    right: 8vh;
+    top: 49vh;
+    background: transparent;
+    border: none;
+    font-size: 1.1rem;
+    cursor: pointer;
+    width: 45vh;
+    height: 7vh;
+}
+
+.help-tabs {
+    display: flex;
+    gap: 8px;
+    margin-top: 8px;
+    margin-bottom: 12px;
+}
+
+.help-tabs .tab {
+    flex: 1;
+    padding: 8px;
+    border-radius: 8px;
+    background: #f0f0f0;
+    border: none;
+    cursor: pointer;
+    font-weight: 600;
+}
+
+.help-tabs .tab.active {
+    background: #f87e3e;
+    color: #082043;
+}
+
+/* Tab panels */
+.tab-panel label {
+    display: block;
+    margin-top: 8px;
+    font-size: 0.9rem;
+    color: #223;
+}
+
+.tab-panel input,
+.tab-panel textarea {
+    width: 100%;
+    padding: 8px;
+    margin-top: 6px;
+    border-radius: 8px;
+    border: 1px solid #ddd;
+}
+
+.tab-panel button[type="submit"] {
+    margin-top: 10px;
+    background: #f87e3e;
+    border: none;
+    color: #082043;
+    padding: 8px 12px;
+    border-radius: 8px;
+    cursor: pointer;
+    font-weight: 700;
+}
+
+/* Lists */
+.faq-list,
+.minhas-list {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    max-height: 220px;
+    overflow: auto;
+}
+
+.faq-list li,
+.minhas-list li {
+    padding: 8px;
+    border-bottom: 1px solid #eee;
+    font-size: 0.95rem;
+}
+
+/* Feedback */
+.help-feedback {
+    margin-top: 8px;
+    color: green;
+    font-size: 0.9rem;
+}
+
+/* FIX: garantir que o container de login fique acima e os inputs clicáveis */
+main#login-container {
+    position: relative;
+    z-index: 1000; /* acima de #manual e #areas_container */
+}
+
+/* Formularios e inputs em primeiro plano */
+.login-estudante,
+.login-cadastrar,
+.login-biblioteca {
+    position: relative;
+    z-index: 1001;
+    pointer-events: auto;
+}
+
+/* Caso o #manual ou #areas_container estejam sobrepostos, reduzir prioridade visual */
+#manual,
+#areas_container {
+    position: relative;
+    z-index: 10;
+}
+
+/* Pequeno ajuste para inputs caso estejam com comportamento estranho */
+input, textarea, select, button {
+    position: relative;
+    z-index: 1002;
+}
+
+/* Recomendo remover/ajustar margens negativas no CSS principal se continuar havendo sobreposição */
