@@ -159,27 +159,32 @@ function cadastrarAluno() {
 
         // Form submit
         form && form.addEventListener('submit', (ev) => {
-            ev.preventDefault();
-            const nome = document.getElementById('helpName').value.trim();
-            const pergunta = document.getElementById('helpQuestion').value.trim();
-            if (!pergunta) {
-                feedback.textContent = 'Escreva sua pergunta antes de enviar.';
-                feedback.style.color = 'crimson';
-                clearTimeout(feedbackTimeout);
-                feedbackTimeout = setTimeout(() => { feedback.textContent = ''; }, 3000);
-                return;
-            }
-            savePergunta({ nome, pergunta, data: new Date().toISOString() });
+          ev.preventDefault();
+          const nome = document.getElementById('helpName').value.trim();
+          const pergunta = document.getElementById('helpQuestion').value.trim();
+          if (!pergunta) {
+              feedback.textContent = 'Escreva sua pergunta antes de enviar.';
+              feedback.style.color = 'crimson';
+              clearTimeout(feedbackTimeout);
+              feedbackTimeout = setTimeout(() => { feedback.textContent = ''; }, 3000);
+              return;
+          }
+
+          fetch('http://localhost:5000/api/suggestions', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({ title: null, author: nome || null, message: pergunta })
+          })
+          .then(r => r.json())
+          .then(() => {
             feedback.style.color = 'green';
             feedback.textContent = 'Pergunta enviada. Verifique em "Minhas perguntas".';
             form.reset();
-            renderMinhas();
-
-            // limpa a mensagem após 3 segundos
+            // mantém limpeza da mensagem (3s)
             clearTimeout(feedbackTimeout);
-            feedbackTimeout = setTimeout(() => {
-                feedback.textContent = '';
-            }, 1000);
+            feedbackTimeout = setTimeout(() => { feedback.textContent = ''; }, 3000);
+          })
+          .catch(() => { feedback.textContent = 'Erro ao enviar, tente novamente.'; feedback.style.color='crimson'; });
         });
 
     });

@@ -6,6 +6,7 @@ let emprestimos = [];
       document.querySelectorAll(".secao").forEach(sec => sec.style.display = "none");
       document.getElementById(secaoId).style.display = "block";
 
+      // atualizar listas ao abrir cada seção
       if (secaoId === "livro") carregarLivros();
       if (secaoId === "controle") atualizarListaEmprestimos();
       if (secaoId === "sugestoes") carregarSugestoes();
@@ -105,23 +106,107 @@ let emprestimos = [];
 
     // --- Sugestões dos alunos ---
     function carregarSugestoes() {
-      const lista = document.getElementById("sugestoesList");
-      const sugestoes = JSON.parse(localStorage.getItem("sugestoesLivros")) || [];
-      lista.innerHTML = "";
+      const lista = document.getElementById("sugestoesBibliList");
+      if (!lista) return;
+      lista.innerHTML = 'Carregando...';
+      fetch('http://localhost:5000/api/suggestions')
+        .then(r => r.json())
+        .then(suggestions => {
+          if (!suggestions.length) { lista.innerHTML = '<p>Nenhuma sugestão recebida.</p>'; return; }
+          lista.innerHTML = '';
+          suggestions.forEach(s => {
+            const cont = document.createElement('div');
+            cont.className = 'sugestao-item';
+            cont.innerHTML = `
+              <div class="card-sug">
+                <strong>${s.title || 'Pergunta'}</strong>
+                <div>Autor: ${s.author || 'Anônimo'}</div>
+                <div>${s.message || ''}</div>
+                <div class="meta">Enviado: ${new Date(s.created_at).toLocaleString()}</div>
+                <div class="actions">
+                  <button onclick="fetch('http://localhost:5000/api/suggestions/${s.id}/handle', {method:'POST'}).then(()=>carregarSugestoes())" class="btn-marcar">Marcar como lida</button>
+                  <button onclick="fetch('http://localhost:5000/api/suggestions', {method:'DELETE', headers:{'Content-Type':'application/json'}, body:JSON.stringify({id:${s.id}})}).then(()=>carregarSugestoes())" class="btn-remover">Remover</button>
+                </div>
+              </div>
+            `;
+            lista.appendChild(cont);
+          });
+        }).catch(() => { lista.innerHTML = '<p>Erro ao buscar sugestões.</p>'; });
+    }
 
-      if (sugestoes.length === 0) {
-        lista.innerHTML = "<p>Nenhuma sugestão recebida.</p>";
-        return;
+    function gerarRelatorio() {
+      const emprestimosArr = JSON.parse(localStorage.getItem("emprestimos")) || [];
+      let totalEmprestimos = emprestimosArr.length;
+      let emprestimosAtivos = emprestimosArr.filter(e => e.status === "emprestado").length;
+      let emprestimosFinalizados = emprestimosArr.filter(e => e.status === "finalizado").length;
+
+      // resumo texto exibido (mantém alerta breve)
+      const resumo = `Relatório de Empréstimos:\n\nTotal: ${totalEmprestimos}\nAtivos: ${emprestimosAtivos}\nFinalizados: ${emprestimosFinalizados}`;
+      if (!confirm(resumo + "\n\nDeseja baixar este relatório em PDF?")) return;
+
+      // cria linhas para o PDF (título + resumo + lista)
+      const lines = [];
+      lines.push("Relatório de Empréstimos");
+      lines.push(`Gerado em: ${new Date().toLocaleString()}`);
+      lines.push("");
+      lines.push(`Total de Empréstimos: ${totalEmprestimos}`);
+      lines.push(`Empréstimos Ativos: ${emprestimosAtivos}`);
+      lines.push(`Empréstimos Finalizados: ${emprestimosFinalizados}`);
+      lines.push("");
+      lines.push("Detalhes:");
+      if (emprestimosArr.length === 0) {
+        lines.push("Nenhum empréstimo registrado.");
+      } else {
+        emprestimosArr.forEach((e, i) => {
+          lines.push(`${i + 1}. ${e.nome} (${e.serie}) — "${e.livro}" — ${e.dias} dias — ${e.status}`);
+        });
       }
 
-      sugestoes.forEach(s => {
-        const item = document.createElement("p");
-        item.textContent = `📦 ${s}`;
-        lista.appendChild(item);
+      // carregador dinâmico do jsPDF (CDN)
+      function loadJsPdf() {
+        return new Promise((resolve, reject) => {
+          if (window.jspdf || window.jsPDF) return resolve();
+          const s = document.createElement("script");
+          s.src = "https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js";
+          s.onload = () => resolve();
+          s.onerror = () => reject(new Error("Falha ao carregar jsPDF"));
+          document.head.appendChild(s);
+        });
+      }
+
+      // gera e salva o PDF
+      loadJsPdf().then(() => {
+        // obtém construtor jsPDF
+        const jsPDFConstructor = (window.jspdf && window.jspdf.jsPDF) || window.jsPDF;
+        if (!jsPDFConstructor) {
+          alert("Erro: biblioteca jsPDF não disponível.");
+          return;
+        }
+
+        const doc = new jsPDFConstructor();
+        const marginLeft = 15;
+        let y = 18;
+        const lineHeight = 7;
+        doc.setFontSize(12);
+
+        lines.forEach((text) => {
+          
+          const split = doc.splitTextToSize(text, 180);
+          split.forEach((t) => {
+            if (y > 280) { doc.addPage(); y = 18; }
+            doc.text(t, marginLeft, y);
+            y += lineHeight;
+          });
+        });
+
+        const filename = `relatorio_emprestimos_${new Date().toISOString().slice(0,19).replace(/[:T]/g, "-")}.pdf`;
+        doc.save(filename);
+      }).catch(() => {
+        alert("Não foi possível carregar a biblioteca para gerar o PDF.");
       });
     }
 
-    // Carregar listas ao abrir página
+
     window.onload = function () {
       carregarLivros();
       atualizarListaEmprestimos();

@@ -1,85 +1,100 @@
-# pylint: disable=import-errror
-from flask import Flask, render_template, request, redirect, url_for, flash
-import sqlite3
+from flask import Flask, request, jsonify, send_file
+from flask_cors import CORS
+import banco  # usa as funções do banco.py
+import io
+from datetime import datetime
 
 app = Flask(__name__)
-app.secret_key = "chave_secreta_123"
+CORS(app)
 
-def get_db_connection():
-    conn = sqlite3.connect('database.db')
-    conn.row_factory = sqlite3.Row
-    return conn
+# inicializa DB (uma vez)
+banco.init_database()
 
-@app.route('/')
-def index():
-    return render_template('index.html')
+# Authentication (simples)
+@app.route('/api/register', methods=['POST'])
+def api_register():
+    data = request.json or {}
+    ok = banco.register_user(data.get('username'), data.get('password'), data.get('full_name'), data.get('role', 'student'))
+    return jsonify({'success': bool(ok)})
 
-@app.route('/login_aluno', methods=['POST'])
-def login_aluno():
-    nome = request.form['aluno-nome']
-    senha = request.form['aluno-senha']
-    
-    conn = get_db_connection()
-    cursor = conn.cursor()
-    cursor.execute('SELECT * FROM usuarios WHERE nome = ? AND senha = ?', (nome, senha))
-    aluno = cursor.fetchone()
-    conn.close()
-    
-    if aluno:
-        flash('Login bem-sucedido!', 'success')
-        return redirect(url_for('aluno'))
+@app.route('/api/login', methods=['POST'])
+def api_login():
+    data = request.json or {}
+    user_id, name = banco.login_user(data.get('username'), data.get('password'))
+    if user_id:
+        return jsonify({'user_id': user_id, 'full_name': name})
+    return jsonify({'error': 'invalid_credentials'}), 401
+
+# Books
+@app.route('/api/books', methods=['GET', 'POST'])
+def api_books():
+    if request.method == 'GET':
+        conn = banco.get_db_connection()
+        rows = conn.execute('SELECT * FROM books').fetchall()
+        conn.close()
+        return jsonify([dict(r) for r in rows])
     else:
-        flash('Nome ou senha incorretos!', 'error')
-        return redirect(url_for('index'))
+        data = request.json or {}
+        book_id = banco.add_book(data.get('title'), data.get('author'), data.get('isbn'), data.get('available',1))
+        return jsonify({'book_id': book_id})
 
-@app.route('/cadastrar_aluno', methods=['POST'])
-def cadastrar_aluno():
-    nome = request.form['novo-aluno-nome']
-    senha = request.form['novo-aluno-senha']
-    serie = request.form['aluno-serie']
-    
-    conn = get_db_connection()
-    cursor = conn.cursor()
-    try:
-        cursor.execute('INSERT INTO usuarios (nome, senha, serie) VALUES (?, ?, ?)', 
-                      (nome, senha, serie))
-        conn.commit()
-        flash('Cadastro realizado com sucesso!', 'success')
-    except sqlite3.IntegrityError:
-        flash('Erro: Nome já cadastrado!', 'error')
-    conn.close()
-    
-    return redirect(url_for('index'))
-
-@app.route('/login_bibliotecario', methods=['POST'])
-def login_bibliotecario():
-    usuario = request.form['bibliotecario-usuario']
-    senha = request.form['bibliotecario-senha']
-    
-    if usuario == 'bibliotecario' and senha == 'autorizado1234':
-        flash('Login bem-sucedido!', 'success')
-        return redirect(url_for('bibliotecario'))
+# Loans
+@app.route('/api/loans', methods=['GET', 'POST'])
+def api_loans():
+    if request.method == 'GET':
+        conn = banco.get_db_connection()
+        rows = conn.execute('''
+            SELECT l.id, l.book_id, l.user_id, l.borrow_datetime, l.return_datetime,
+                   b.title as book_title, u.full_name as user_name
+            FROM loans l
+            LEFT JOIN books b ON l.book_id = b.id
+            LEFT JOIN users u ON l.user_id = u.id
+            ORDER BY l.borrow_datetime DESC
+        ''').fetchall()
+        conn.close()
+        return jsonify([dict(r) for r in rows])
     else:
-        flash('Usuário ou senha incorretos!', 'error')
-        return redirect(url_for('index'))
+        data = request.json or {}
+        ok = banco.borrow_book(data.get('book_id'), data.get('user_id'))
+        return jsonify({'success': bool(ok)})
 
-@app.route('/aluno')
-def aluno():
-    conn = get_db_connection()
-    cursor = conn.cursor()
-    cursor.execute('SELECT livros.titulo, autores.nome AS autor, categorias.nome AS categoria, livros.ano_publicacao, livros.quantidade_disponivel FROM livros JOIN autores ON livros.id_autor = autores.id_autor JOIN categorias ON livros.id_categoria = categorias.id_categoria WHERE livros.quantidade_disponivel > 0')
-    livros = cursor.fetchall()
-    conn.close()
-    return render_template('aluno.html', livros=livros)
+@app.route('/api/loans/<int:loan_id>/return', methods=['POST'])
+def api_return(loan_id):
+    data = request.json or {}
+    user_id = data.get('user_id')
+    ok = banco.return_book(loan_id, user_id)
+    return jsonify({'success': bool(ok)})
 
-@app.route('/bibliotecario')
-def bibliotecario():
-    conn = get_db_connection()
-    cursor = conn.cursor()
-    cursor.execute('SELECT livros.titulo, autores.nome AS autor, categorias.nome AS categoria, livros.ano_publicacao, livros.quantidade_total, livros.quantidade_disponivel FROM livros JOIN autores ON livros.id_autor = autores.id_autor JOIN categorias ON livros.id_categoria = categorias.id_categoria')
-    livros = cursor.fetchall()
-    conn.close()
-    return render_template('bibliotecario.html', livros=livros)
+# Suggestions
+@app.route('/api/suggestions', methods=['GET', 'POST', 'DELETE'])
+def api_suggestions():
+    if request.method == 'GET':
+        only_unhandled = request.args.get('unhandled') == '1'
+        rows = banco.list_suggestions(only_unhandled)
+        return jsonify(rows)
+    if request.method == 'POST':
+        data = request.json or {}
+        banco.add_suggestion(data.get('title'), data.get('author'), data.get('message'))
+        return jsonify({'success': True})
+    # DELETE expects JSON { "id": <id> }
+    data = request.json or {}
+    if 'id' in data:
+        banco.remove_suggestion(data['id'])
+        return jsonify({'success': True})
+    return jsonify({'error': 'missing_id'}), 400
+
+# optional: mark handled
+@app.route('/api/suggestions/<int:sug_id>/handle', methods=['POST'])
+def api_handle_suggestion(sug_id):
+    banco.mark_suggestion_handled(sug_id)
+    return jsonify({'success': True})
+
+# Report (text)
+@app.route('/api/report', methods=['GET'])
+def api_report():
+    text = banco.generate_daily_report()
+    # return plain text; frontend may convert to PDF client-side or download .txt
+    return jsonify({'report': text, 'generated_at': datetime.now().isoformat()})
 
 if __name__ == '__main__':
-    app.run(debug=True) 
+    app.run(debug=True)

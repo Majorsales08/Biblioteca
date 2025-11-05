@@ -5,6 +5,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>BIBLIOTECARIO</title>
+  <link rel="shortcut icon" href="imagem/ChatGPT_Image_4_de_nov._de_2025__21_32_44-removebg-preview.png" type="image/x-icon">
   <link rel="stylesheet" href="2B.css">
 </head>
 
@@ -21,7 +22,9 @@
     <button onclick="mostrarSecao('controle')">Controle de empréstimos</button><br>
     <button onclick="mostrarSecao('livro')">Livros registrados</button><br>
     <button onclick="mostrarSecao('catalogar')">Catalogar Livro</button><br>
-    <button onclick="mostrarSecao('registro')">Registrar empréstimo</button>
+    <button onclick="mostrarSecao('registro')">Registrar empréstimo</button><br>
+    <button onclick="mostrarSecao('sugestoes')">Sugestões de livros</button><br>
+    <button onclik = "mostrarSecao('relatorio')">Gerar relatório</button>
   </main>
 
   <!-- Controle de empréstimos -->
@@ -61,6 +64,16 @@
       <button type="submit">Registrar</button>
     </form>
   </section>
+
+  <!-- Sugestões de livros -->
+  <section id="sugestoes" class="secao" style="display:none;">
+    <h2>Sugestões de Livros</h2>
+    <div id="sugestoesBibliList">
+
+
+    </div>
+  </section>
+    
 
   <script src="bibli.js"></script>
 
