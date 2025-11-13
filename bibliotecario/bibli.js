@@ -17,15 +17,17 @@ let emprestimos = [];
       e.preventDefault();
 
       const nome = document.getElementById("nomeLivro").value;
-      const autor = document.getElementById("autorLivro").value;
+      const sobre = document.getElementById("sobreLivro").value;
+      const  imagem = document.getElementById("imagemLivro").value;
 
       livros = JSON.parse(localStorage.getItem("livrosCatalogados")) || [];
-      livros.push({ nome, autor });
+      livros.push({ nome, sobre, imagem });
       localStorage.setItem("livrosCatalogados", JSON.stringify(livros));
 
       this.reset();
       carregarLivros();
       mostrarSecao("livro");
+
 
     });
 
