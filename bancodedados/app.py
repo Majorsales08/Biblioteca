@@ -53,15 +53,39 @@ def init_db():
     conn = sqlite3.connect('database.db')
     c = conn.cursor()
     c.executescript('''
-        CREATE TABLE IF NOT EXISTS alunos (
+                    
+      CREATE TABLE IF NOT EXISTS alunos (
             id INTEGER PRIMARY KEY AUTOINCREMENT,
             nome TEXT NOT NULL,
             serie TEXT NOT NULL,
-            email TEXT UNIQUE NOT NULL,
-            senha TEXT NOT NULL
+            email TEXT UNIQUE,
+            senha TEXT
         );
-        CREATE TABLE IF NOT EXISTS livros (...);  -- (mantém o resto igual)
-        -- ... outras tabelas iguais ao anterior
+        CREATE TABLE IF NOT EXISTS livros (
+            id INTEGER PRIMARY KEY AUTOINCREMENT,
+            titulo TEXT NOT NULL,
+            autor TEXT,
+            sobre TEXT,
+            categoria TEXT,
+            codigo TEXT UNIQUE,
+            imagem TEXT
+        );
+        CREATE TABLE IF NOT EXISTS emprestimos (
+            id INTEGER PRIMARY KEY AUTOINCREMENT,
+            aluno_id INTEGER,
+            livro_id INTEGER,
+            data_emprestimo TEXT,
+            data_devolucao TEXT,
+            status TEXT DEFAULT 'emprestado',
+            FOREIGN KEY(aluno_id) REFERENCES alunos(id),
+            FOREIGN KEY(livro_id) REFERENCES livros(id)
+        );
+        CREATE TABLE IF NOT EXISTS sugestoes (
+            id INTEGER PRIMARY KEY AUTOINCREMENT,
+            aluno_nome TEXT,
+            livro_sugerido TEXT,
+            data TEXT
+        );
     ''')
     # Bibliotecário padrão
     c.execute("INSERT OR IGNORE INTO alunos (nome, serie, email, senha) VALUES ('Bibliotecário', 'Admin', 'admin@biblioteca.com', 'admin123')")
