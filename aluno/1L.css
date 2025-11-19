@@ -95,7 +95,8 @@ header {
   color: #1c1c1c;
   padding: 2rem;
   border-radius: 15px;
-  display: none; /* esconde até ser chamada pelo JS */
+  display: none;
+  /* esconde até ser chamada pelo JS */
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
   animation: fadeIn 0.3s ease;
   margin-top: -400px;
@@ -135,20 +136,110 @@ form button:hover {
   background-color: #ff9a66;
 }
 
-/* Listas de livros e histórico */
-#listaLivros p,
-#sugestoesList p,
-#historicoList p {
-  background: #f0f0f0;
-  padding: 0.8rem;
-  border-radius: 10px;
-  margin-bottom: 0.5rem;
-  color: #0c1f4a;
-  font-weight: bold;
+.catalogo-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+  gap: 20px;
+  padding: 20px 0;
 }
 
-/* Animação suave ao abrir seção */
+.livro-card {
+  background: white;
+  border-radius: 15px;
+  overflow: hidden;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  transition: transform 0.3s;
+  color: #0c1f4a;
+}
+
+.livro-card:hover {
+  transform: translateY(-10px);
+}
+
+.livro-card img {
+  width: 100%;
+  height: 300px;
+  object-fit: cover;
+}
+
+.livro-info {
+  padding: 15px;
+}
+
+.livro-info h3 {
+  margin: 0 0 10px 0;
+  font-size: 1.2rem;
+  color: #f87e3e;
+}
+
+.livro-info p {
+  margin: 8px 0;
+  font-size: 0.95rem;
+  line-height: 1.4;
+  color: #333;
+}
+
+.livro-info .codigo {
+  font-weight: bold;
+  color: #0c1f4a;
+  font-size: 0.9rem;
+}
+
+
 @keyframes fadeIn {
-  from { opacity: 0; transform: translateY(10px); }
+  from { opacity: 0; transform: translateY(30px); }
   to { opacity: 1; transform: translateY(0); }
+}
+
+/* =============== RESPONSIVIDADE PERFEITA =============== */
+@media (max-width: 1600px) {
+  .secao { margin-left: 300px; width: calc(100% - 350px); }
+}
+
+@media (max-width: 1400px) {
+  .secao { 
+    margin-left: 280px; 
+    width: calc(100% - 320px); 
+    margin-top: -450px;
+  }
+  .grid button { width: 240px; }
+}
+
+@media (max-width: 1200px) {
+  .grid {
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: center;
+    max-width: none;
+    margin-top: 30px;
+  }
+  .grid button { width: 220px; margin: 10px; }
+  .secao {
+    margin-left: 50px;
+    margin-top: 50px;
+    width: calc(100% - 100px);
+    padding: 2.5rem;
+  }
+}
+
+@media (max-width: 768px) {
+  header { flex-direction: column; text-align: center; gap: 1.5rem; }
+  .search-bar { width: 90%; max-width: none; }
+  .grid { align-items: center; }
+  .grid button { width: 90%; max-width: 300px; }
+  .secao {
+    margin: 2rem auto;
+    width: 95%;
+    padding: 2rem;
+  }
+  .catalogo-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+@media (max-width: 480px) {
+  body { padding: 1rem; }
+  .profile { font-size: 1rem; padding: 0.6rem 1rem; }
+  .secao h2 { font-size: 1.9rem; }
+  .livro-card img { height: 280px; }
 }

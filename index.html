@@ -5,7 +5,8 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Biblioteca Escolar</title>
-    <link rel="shortcut icon" href="imagem/ChatGPT_Image_4_de_nov._de_2025__21_32_44-removebg-preview.png" type="image/x-icon">
+    <link rel="shortcut icon" href="imagem/ChatGPT_Image_4_de_nov._de_2025__21_32_44-removebg-preview.png"
+        type="image/x-icon">
     <link rel="stylesheet" href="styles.css">
 </head>
 
@@ -14,7 +15,7 @@
         <h1>Biblioteca Escolar</h1>
     </div>
 
-   
+
 
     <div id="manual">
         <h2>VOCÊ CONHECE A BIBLIOTECA ESCOLAR?</h2>
@@ -124,26 +125,29 @@
 
             <button onclick="loginAluno()">Entrar</button>
 
-             <h5>Não tem uma conta? Cadastre-se agora <a href="#cadastro-aluno" onclick="mostrarCadastroAluno()">Cadastre-se</a></h5>
+            <h5>Não tem uma conta? Cadastre-se agora <a href="#cadastro-aluno"
+                    onclick="mostrarCadastroAluno()">Cadastre-se</a></h5>
 
         </div>
-       
+
         <div id="cadastro-aluno" class="login-cadastrar" style="display: none;">
             <h3>Cadastro de Aluno</h3>
             <h4>Preencha seus dados abaixo para acessar o sistema</h4>
 
-            <input type="text" id="novo-aluno-nome" placeholder="Nome Completo"> 
-            <input type= "email" id="aluno-email" placeholder="Email institucional">
+            <input type="text" id="novo-aluno-nome" placeholder="Nome Completo">
+            <input type="email" id="aluno-email" placeholder="Email institucional">
             <input type="password" id="novo-aluno-senha" placeholder="Senha">
-           
+
 
             <select id="aluno-serie">
                 <option value="1">1º Ano</option>
                 <option value="2">2º Ano</option>
                 <option value="3">3º Ano</option>
             </select>
-
+            
             <button onclick="cadastrarAluno()">Cadastrar</button>
+
+
         </div>
 
         <div id="login-bibliotecario" class="login-biblioteca" style="display: none;">
@@ -157,6 +161,8 @@
 
         </div>
 
+
+
         <!-- Help button (coloque dentro do login-container, por exemplo após os formulários) -->
         <button id="helpButton" class="help-button" aria-haspopup="dialog" aria-controls="helpModal">
             ?
@@ -165,38 +171,38 @@
 
     <!-- Help modal (adicione antes do script.js) -->
     <div id="helpModal" class="help-modal" role="dialog" aria-modal="true" aria-hidden="true" style="display:none;">
-      <div class="help-content">
-        <button class="help-close" id="helpClose" aria-label="Fechar">✕</button>
-        <h3>Ajuda</h3>
+        <div class="help-content">
+            <button class="help-close" id="helpClose" aria-label="Fechar">✕</button>
+            <h3>Ajuda</h3>
 
-        <div class="help-tabs">
-          <button class="tab active" data-tab="ask">Fazer pergunta</button>
-          <button class="tab" data-tab="faq">Perguntas frequentes</button>
-          <button class="tab" data-tab="minhas">Minhas perguntas</button>
+            <div class="help-tabs">
+                <button class="tab active" data-tab="ask">Fazer pergunta</button>
+                <button class="tab" data-tab="faq">Perguntas frequentes</button>
+                <button class="tab" data-tab="minhas">Minhas perguntas</button>
+            </div>
+
+            <div class="tab-panel" id="tab-ask">
+                <form id="helpForm">
+                    <label for="helpName">Nome (opcional)</label>
+                    <input id="helpName" type="text" placeholder="Seu nome">
+                    <label for="helpQuestion">Pergunta</label>
+                    <textarea id="helpQuestion" rows="4" placeholder="Escreva sua pergunta..."></textarea>
+                    <button type="submit">Enviar pergunta</button>
+                    <p id="helpFeedback" class="help-feedback" aria-live="polite"></p>
+                </form>
+            </div>
+
+            <div class="tab-panel" id="tab-faq" style="display:none;">
+                <ul class="faq-list" id="faqList">
+                    <!-- FAQ será preenchida via script -->
+                </ul>
+            </div>
+
+            <div class="tab-panel" id="tab-minhas" style="display:none;">
+                <ul id="minhasPerguntas" class="minhas-list"></ul>
+            </div>
+
         </div>
-
-        <div class="tab-panel" id="tab-ask">
-          <form id="helpForm">
-            <label for="helpName">Nome (opcional)</label>
-            <input id="helpName" type="text" placeholder="Seu nome">
-            <label for="helpQuestion">Pergunta</label>
-            <textarea id="helpQuestion" rows="4" placeholder="Escreva sua pergunta..."></textarea>
-            <button type="submit">Enviar pergunta</button>
-            <p id="helpFeedback" class="help-feedback" aria-live="polite"></p>
-          </form>
-        </div>
-
-        <div class="tab-panel" id="tab-faq" style="display:none;">
-          <ul class="faq-list" id="faqList">
-            <!-- FAQ será preenchida via script -->
-          </ul>
-        </div>
-
-        <div class="tab-panel" id="tab-minhas" style="display:none;">
-          <ul id="minhasPerguntas" class="minhas-list"></ul>
-        </div>
-
-      </div>
     </div>
 
     <script src="script.js"></script>
