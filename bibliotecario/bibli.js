@@ -1,216 +1,194 @@
 let emprestimos = [];
-    let livros = [];
+let livros = [];
 
-    // Alternar seções
-    function mostrarSecao(secaoId) {
-      document.querySelectorAll(".secao").forEach(sec => sec.style.display = "none");
-      document.getElementById(secaoId).style.display = "block";
+// Alternar seções
+function mostrarSecao(secaoId) {
+  document.querySelectorAll(".secao").forEach(sec => sec.style.display = "none");
+  document.getElementById(secaoId).style.display = "block";
 
-      // atualizar listas ao abrir cada seção
-      if (secaoId === "livro") carregarLivros();
-      if (secaoId === "controle") atualizarListaEmprestimos();
-      if (secaoId === "sugestoes") carregarSugestoes();
-    }
+  if (secaoId === "livro") carregarLivros();
+  if (secaoId === "controle") atualizarListaEmprestimos();
+  if (secaoId === "sugestoes") carregarSugestoes();
+}
 
-    // --- Catalogar livros ---
-    document.getElementById("formCatalogar").addEventListener("submit", function (e) {
-      e.preventDefault();
+// === CATALOGAR LIVRO (com imagem em base64) ===
+document.getElementById("formCatalogar").addEventListener("submit", function (e) {
+  e.preventDefault();
 
-      const nome = document.getElementById("nomeLivro").value;
-      const sobre = document.getElementById("sobreLivro").value;
-      const  imagem = document.getElementById("imagemLivro").value;
+  const nome = document.getElementById("nomeLivro").value.trim();
+  const autor = document.getElementById("autorLivro").value.trim();
+  const sobre = document.getElementById("sobreLivro").value.trim();
+  const categoria = document.getElementById("categoriaLivro").value.trim();
+  const codigo = document.getElementById("codigoLivro").value.trim();
+  const file = document.getElementById("imagemLivro").files[0];
 
-      livros = JSON.parse(localStorage.getItem("livrosCatalogados")) || [];
-      livros.push({ nome, sobre, imagem });
-      localStorage.setItem("livrosCatalogados", JSON.stringify(livros));
+  if (!file) {
+    alert("Por favor, selecione uma imagem da capa!");
+    return;
+  }
 
-      this.reset();
-      carregarLivros();
-      mostrarSecao("livro");
+  const reader = new FileReader();
+  reader.onload = function (event) {
+    const imagemBase64 = event.target.result;
 
+    let livros = JSON.parse(localStorage.getItem("livrosCatalogados") || "[]");
+    livros.push({ nome, autor, sobre, categoria, codigo, imagem: imagemBase64 });
+    localStorage.setItem("livrosCatalogados", JSON.stringify(livros));
 
-    });
+    alert("Livro catalogado com sucesso!");
+    document.getElementById("formCatalogar").reset();
+    carregarLivros();
+  };
+  reader.readAsDataURL(file);
+});
 
-    function carregarLivros() {
-      const lista = document.getElementById("livrosList");
-      livros = JSON.parse(localStorage.getItem("livrosCatalogados")) || [];
-      lista.innerHTML = "";
+// === LISTAR LIVROS COM BOTÃO DE EXCLUIR ===
+function carregarLivros() {
+  const lista = document.getElementById("livrosList");
+  const livros = JSON.parse(localStorage.getItem("livrosCatalogados") || "[]");
+  lista.innerHTML = "";
 
-      if (livros.length === 0) {
-        lista.innerHTML = "<p>Nenhum livro registrado.</p>";
-        return;
-      }
+  if (livros.length === 0) {
+    lista.innerHTML = "<p style='color:#666;'>Nenhum livro catalogado ainda.</p>";
+    return;
+  }
 
+<<<<<<< HEAD
       livros.forEach(l => {
         const item = document.createElement("p");
         item.textContent = `  ${imagem} - ${l.nome} - ${l.sobre}`;
         lista.appendChild(item);
       });
     }
+=======
+  livros.forEach((livro, index) => {
+    const div = document.createElement("div");
+    div.style = "background:#f0f0f0; padding:15px; margin:10px 0; border-radius:10px; display:flex; justify-content:space-between; align-items:center; color:#0c1f4a;";
+    
+    div.innerHTML = `
+      <div>
+        <strong>${livro.nome}</strong> - ${livro.autor}<br>
+        <small>Código: ${livro.codigo} | Categoria: ${livro.categoria}</small>
+      </div>
+      <button onclick="excluirLivro(${index})" style="background:#e74c3c; color:white; border:none; padding:8px 15px; border-radius:8px; cursor:pointer;">
+        Excluir
+      </button>
+    `;
+    lista.appendChild(div);
+  });
+}
+>>>>>>> ffd753b40f5c72c5a9c60ce3a1aec15b66e813f9
 
-    // --- Registrar empréstimos ---
-    document.getElementById("formEmprestimo").addEventListener("submit", function (e) {
-      e.preventDefault();
+// === FUNÇÃO PARA EXCLUIR LIVRO ===
+function excluirLivro(index) {
+  if (!confirm("Tem certeza que deseja excluir este livro? Essa ação não pode ser desfeita.")) return;
 
-      const nome = document.getElementById("nomeAluno").value;
-      const serie = document.getElementById("serieAluno").value;
-      const livro = document.getElementById("livroEmprestimo").value;
-      const dataEmprestimo = new Date(document.getElementById("dataEmprestimo").value);
+  let livros = JSON.parse(localStorage.getItem("livrosCatalogados") || "[]");
+  const livroExcluido = livros.splice(index, 1)[0]; // Remove o livro
 
-      const hoje = new Date();
-      const dias = Math.floor((hoje - dataEmprestimo) / (1000 * 60 * 60 * 24));
+  localStorage.setItem("livrosCatalogados", JSON.stringify(livros));
+  alert(`Livro "${livroExcluido.nome}" excluído com sucesso!`);
+  carregarLivros();
+}
 
-      emprestimos = JSON.parse(localStorage.getItem("emprestimos")) || [];
-      emprestimos.push({ nome, serie, livro, dias, status: "emprestado" });
-      localStorage.setItem("emprestimos", JSON.stringify(emprestimos));
-      
+// === REGISTRAR EMPRÉSTIMO ===
+document.getElementById("formEmprestimo").addEventListener("submit", function (e) {
+  e.preventDefault();
 
-      // também salva no histórico do aluno
-      let historico = JSON.parse(localStorage.getItem("historicoAluno")) || [];
-      historico.push({ livro, status: "emprestado" });
-      localStorage.setItem("historicoAluno", JSON.stringify(historico));
+  const nome = document.getElementById("nomeAluno").value.trim();
+  const serie = document.getElementById("serieAluno").value.trim();
+  const livro = document.getElementById("livroEmprestimo").value.trim();
+  const dataEmprestimo = document.getElementById("dataEmprestimo").value;
 
-      this.reset();
-      atualizarListaEmprestimos();
-      mostrarSecao("controle");
-      
-    });
+  let emprestimos = JSON.parse(localStorage.getItem("emprestimos") || "[]");
+  emprestimos.push({
+    nome,
+    serie,
+    livro,
+    dataEmprestimo,
+    dataDevolucao: null,
+    status: "emprestado"
+  });
 
-    function atualizarListaEmprestimos() {
-      const lista = document.getElementById("emprestimosList");
-      emprestimos = JSON.parse(localStorage.getItem("emprestimos")) || [];
-      lista.innerHTML = "";
+  localStorage.setItem("emprestimos", JSON.stringify(emprestimos));
 
-      if (emprestimos.length === 0) {
-        lista.innerHTML = "<p>Nenhum empréstimo registrado.</p>";
-        return;
-      }
+  // Salva no histórico do aluno
+  let historico = JSON.parse(localStorage.getItem("historicoAluno") || "[]");
+  historico.push({ livro, status: "emprestado", data: dataEmprestimo });
+  localStorage.setItem("historicoAluno", JSON.stringify(historico));
 
-      emprestimos.forEach((emp, idx) => {
-        const item = document.createElement("div");
-        item.innerHTML = `
-          <span>${emp.nome} (${emp.serie}) está com "${emp.livro}" há ${emp.dias} dias. Status: ${emp.status}</span>
-          <button onclick="finalizarEmprestimo(${idx})">Finalizar Empréstimo</button>
-        `;
-        lista.appendChild(item);
-      });
-    }
+  alert(`Empréstimo registrado para ${nome}!`);
+  this.reset();
+  atualizarListaEmprestimos();
+  mostrarSecao("controle");
+});
 
-    // Função para finalizar empréstimo
-    function finalizarEmprestimo(idx) {
-      emprestimos = JSON.parse(localStorage.getItem("emprestimos")) || [];
-      if (emprestimos[idx]) {
-        emprestimos[idx].status = "finalizado";
-        localStorage.setItem("emprestimos", JSON.stringify(emprestimos));
-        atualizarListaEmprestimos();
-      }
-    }
+// === LISTAR EMPRÉSTIMOS COM BOTÃO DE FINALIZAR ===
+function atualizarListaEmprestimos() {
+  const lista = document.getElementById("emprestimosList");
+  const emprestimos = JSON.parse(localStorage.getItem("emprestimos") || "[]");
+  lista.innerHTML = "";
 
-    // --- Sugestões dos alunos ---
-    function carregarSugestoes() {
-      const lista = document.getElementById("sugestoesBibliList");
-      if (!lista) return;
-      lista.innerHTML = 'Carregando...';
-      fetch('http://localhost:5000/api/suggestions')
-        .then(r => r.json())
-        .then(suggestions => {
-          if (!suggestions.length) { lista.innerHTML = '<p>Nenhuma sugestão recebida.</p>'; return; }
-          lista.innerHTML = '';
-          suggestions.forEach(s => {
-            const cont = document.createElement('div');
-            cont.className = 'sugestao-item';
-            cont.innerHTML = `
-              <div class="card-sug">
-                <strong>${s.title || 'Pergunta'}</strong>
-                <div>Autor: ${s.author || 'Anônimo'}</div>
-                <div>${s.message || ''}</div>
-                <div class="meta">Enviado: ${new Date(s.created_at).toLocaleString()}</div>
-                <div class="actions">
-                  <button onclick="fetch('http://localhost:5000/api/suggestions/${s.id}/handle', {method:'POST'}).then(()=>carregarSugestoes())" class="btn-marcar">Marcar como lida</button>
-                  <button onclick="fetch('http://localhost:5000/api/suggestions', {method:'DELETE', headers:{'Content-Type':'application/json'}, body:JSON.stringify({id:${s.id}})}).then(()=>carregarSugestoes())" class="btn-remover">Remover</button>
-                </div>
-              </div>
-            `;
-            lista.appendChild(cont);
-          });
-        }).catch(() => { lista.innerHTML = '<p>Erro ao buscar sugestões.</p>'; });
-    }
+  if (emprestimos.length === 0) {
+    lista.innerHTML = "<p style='color:#666;'>Nenhum empréstimo registrado.</p>";
+    return;
+  }
 
-    function gerarRelatorio() {
-      const emprestimosArr = JSON.parse(localStorage.getItem("emprestimos")) || [];
-      let totalEmprestimos = emprestimosArr.length;
-      let emprestimosAtivos = emprestimosArr.filter(e => e.status === "emprestado").length;
-      let emprestimosFinalizados = emprestimosArr.filter(e => e.status === "finalizado").length;
+  emprestimos.forEach((emp, index) => {
+    const div = document.createElement("div");
+    div.style = "background:#f0f0f0; padding:15px; margin:10px 0; border-radius:10px; color:#0c1f4a;";
 
-      // resumo texto exibido (mantém alerta breve)
-      const resumo = `Relatório de Empréstimos:\n\nTotal: ${totalEmprestimos}\nAtivos: ${emprestimosAtivos}\nFinalizados: ${emprestimosFinalizados}`;
-      if (!confirm(resumo + "\n\nDeseja baixar este relatório em PDF?")) return;
+    const dataEmp = new Date(emp.dataEmprestimo);
+    const hoje = new Date();
+    const diasDecorridos = Math.floor((hoje - dataEmp) / (1000 * 60 * 60 * 24));
 
-      // cria linhas para o PDF (título + resumo + lista)
-      const lines = [];
-      lines.push("Relatório de Empréstimos");
-      lines.push(`Gerado em: ${new Date().toLocaleString()}`);
-      lines.push("");
-      lines.push(`Total de Empréstimos: ${totalEmprestimos}`);
-      lines.push(`Empréstimos Ativos: ${emprestimosAtivos}`);
-      lines.push(`Empréstimos Finalizados: ${emprestimosFinalizados}`);
-      lines.push("");
-      lines.push("Detalhes:");
-      if (emprestimosArr.length === 0) {
-        lines.push("Nenhum empréstimo registrado.");
-      } else {
-        emprestimosArr.forEach((e, i) => {
-          lines.push(`${i + 1}. ${e.nome} (${e.serie}) — "${e.livro}" — ${e.dias} dias — ${e.status}`);
-        });
-      }
+    const statusCor = emp.status === "emprestado" ? "#e67e22" : "#27ae60";
+    const statusTexto = emp.status === "emprestado" ? "Emprestado" : "Devolvido";
 
-      // carregador dinâmico do jsPDF (CDN)
-      function loadJsPdf() {
-        return new Promise((resolve, reject) => {
-          if (window.jspdf || window.jsPDF) return resolve();
-          const s = document.createElement("script");
-          s.src = "https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js";
-          s.onload = () => resolve();
-          s.onerror = () => reject(new Error("Falha ao carregar jsPDF"));
-          document.head.appendChild(s);
-        });
-      }
+    div.innerHTML = `
+      <div style="margin-bottom:10px;">
+        <strong>${emp.nome}</strong> (${emp.serie})<br>
+        Livro: <strong>"${emp.livro}"</strong><br>
+        Emprestado em: ${dataEmp.toLocaleDateString()}<br>
+        Há ${diasDecorridos} dia(s) | 
+        <span style="color:${statusCor}; font-weight:bold;">${statusTexto}</span>
+      </div>
+      ${emp.status === "emprestado" ? `
+      <button onclick="finalizarEmprestimo(${index})" style="background:#27ae60; color:white; border:none; padding:10px 20px; border-radius:8px; cursor:pointer; font-weight:bold;">
+        Finalizar Devolução
+      </button>` : 
+      `<span style="color:#27ae60; font-weight:bold;">✓ Devolvido</span>`}
+    `;
 
-      // gera e salva o PDF
-      loadJsPdf().then(() => {
-        // obtém construtor jsPDF
-        const jsPDFConstructor = (window.jspdf && window.jspdf.jsPDF) || window.jsPDF;
-        if (!jsPDFConstructor) {
-          alert("Erro: biblioteca jsPDF não disponível.");
-          return;
-        }
+    lista.appendChild(div);
+  });
+}
 
-        const doc = new jsPDFConstructor();
-        const marginLeft = 15;
-        let y = 18;
-        const lineHeight = 7;
-        doc.setFontSize(12);
+// === FINALIZAR EMPRÉSTIMO (DEVOLUÇÃO) ===
+function finalizarEmprestimo(index) {
+  if (!confirm("Confirmar devolução deste livro?")) return;
 
-        lines.forEach((text) => {
-          
-          const split = doc.splitTextToSize(text, 180);
-          split.forEach((t) => {
-            if (y > 280) { doc.addPage(); y = 18; }
-            doc.text(t, marginLeft, y);
-            y += lineHeight;
-          });
-        });
+  let emprestimos = JSON.parse(localStorage.getItem("emprestimos") || "[]");
+  if (emprestimos[index]) {
+    emprestimos[index].status = "devolvido";
+    emprestimos[index].dataDevolucao = new Date().toISOString().split("T")[0];
+    
+    localStorage.setItem("emprestimos", JSON.stringify(emprestimos));
 
-        const filename = `relatorio_emprestimos_${new Date().toISOString().slice(0,19).replace(/[:T]/g, "-")}.pdf`;
-        doc.save(filename);
-      }).catch(() => {
-        alert("Não foi possível carregar a biblioteca para gerar o PDF.");
-      });
-    }
+    // Atualiza histórico do aluno
+    let historico = JSON.parse(localStorage.getItem("historicoAluno") || "[]");
+    const ultimo = historico.findLast(h => h.livro === emprestimos[index].livro && h.status === "emprestado");
+    if (ultimo) ultimo.status = "devolvido";
 
+    localStorage.setItem("historicoAluno", JSON.stringify(historico));
 
-    window.onload = function () {
-      carregarLivros();
-      atualizarListaEmprestimos();
-      carregarSugestoes();
-    }
+    alert("Devolução registrada com sucesso!");
+    atualizarListaEmprestimos();
+  }
+}
+
+// Carregar tudo ao iniciar
+window.onload = function () {
+  carregarLivros();
+  atualizarListaEmprestimos();
+};

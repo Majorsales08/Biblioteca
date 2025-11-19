@@ -2,61 +2,63 @@
 <html lang="pt-br">
 
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>ALUNO</title>
-    <link rel="shortcut icon" href="imagem/ChatGPT_Image_4_de_nov._de_2025__21_32_44-removebg-preview.png" type="image/x-icon">
-    <link rel="stylesheet" href="1L.css">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>ALUNO</title>
+  <link rel="shortcut icon" href="imagem/ChatGPT_Image_4_de_nov._de_2025__21_32_44-removebg-preview.png"
+    type="image/x-icon">
+  <link rel="stylesheet" href="1L.css">
 
 </head>
 
-  <div class="profile">
-      <img src="https://via.placeholder.com/32" alt="Perfil" />
-      <span>Nome do aluno</span>
-      <span class="arrow">▼</span>
-    </div>
-  </header>
+<div class="profile">
+  <img src="https://via.placeholder.com/32" alt="Perfil" />
+  <span>Nome do aluno</span>
+  <span class="arrow">▼</span>
+</div>
+</header>
 
-  <main class="grid">
-    <button class="card" onclick="mostrarSecao('disponiveis')">
-      
-      <p>Livros disponíveis</p>
-    </button>
-    <button class="card" onclick="mostrarSecao('sugestoes')">
-      
-      <p>Sugestão de livros</p>
-    </button>
-    <button class="card" onclick="mostrarSecao('historico')">
-      
-      <p>Histórico de livros</p>
-    </button>
-    <div class="card empty"></div>
-  </main>
+<main class="grid">
+  <button class="card" onclick="mostrarSecao('disponiveis')">
 
-  <!-- Seção: Livros disponíveis -->
-  <section id="disponiveis" class="secao" style="display:none;">
-    <h2>Livros Disponíveis</h2>
-    <div id="listaLivros"></div>
-  </section>
+    <p>Livros disponíveis</p>
+  </button>
+  <button class="card" onclick="mostrarSecao('sugestoes')">
 
-  <!-- Seção: Sugestão de livros -->
-  <section id="sugestoes" class="secao" style="display:none;">
-    <h2>Deixe sua Sugestão</h2>
-    <form id="formSugestao">
-      <input type="text" id="sugestaoLivro" placeholder="Digite o nome do livro" required>
-      <button type="submit">Enviar</button>
-    </form>
-    <div id="sugestoesList"></div>
-  </section>
+    <p>Sugestão de livros</p>
+  </button>
+  <button class="card" onclick="mostrarSecao('historico')">
 
-  <!-- Seção: Histórico -->
-  <section id="historico" class="secao" style="display:none;">
-    <h2>Histórico de Empréstimos</h2>
-    <div id="historicoList"></div>
-  </section>
+    <p>Histórico de livros</p>
+  </button>
+  <div class="card empty"></div>
+</main>
 
-  <script src="al.js"></script>
+<!-- Seção de Livros Disponíveis -->
+<section id="disponiveis" class="secao" style="display:none;">
+  <h2>Livros Disponíveis na Biblioteca</h2>
+  <div id="listaLivros" class="catalogo-grid"></div>
+</section>
+
+<!-- Seção: Sugestão de livros -->
+<section id="sugestoes" class="secao" style="display:none;">
+  <h2>Deixe sua Sugestão</h2>
+  <form id="formSugestao">
+    <input type="text" id="sugestaoLivro" placeholder="Digite o nome do livro" required>
+    <button type="submit">Enviar</button>
+  </form>
+  <div id="sugestoesList"></div>
+</section>
+
+<!-- Seção: Histórico -->
+<section id="historico" class="secao" style="display:none;">
+  <h2>Histórico de Empréstimos</h2>
+  <div id="historicoList"></div>
+</section>
+
+<script src="al.js"></script>
 
 
 </body>
+
 </html>

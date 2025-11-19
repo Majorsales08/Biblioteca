@@ -39,19 +39,22 @@
     <div id="livrosList"></div>
   </section>
 
-  <!-- Catalogar Livro -->
-  <section id="catalogar" class="secao" style="display:none;">
-    <h2>Catalogar Livro</h2>
-    <form id="formCatalogar">
-      <input type="text" id="nomeLivro" placeholder="Nome do Livro" required><br>
-      <input type="text" id="autorLivro" placeholder="Autor" required><br>
-      <input type="text" id="sobreLivro" placeholder="Sobre o Livro" required><br>
-      <input type="text" id="categoriaLivro" placeholder="Categoria" required><br>
-      <input type="text" id="codigoLivro" placeholder="Código" required><br>
-      <input type="file" id="imagemLivro" accept="image/*"><br>
-      <button type="submit">Catalogar</button>
-    </form>
-  </section>
+ <!-- Formulário de catalogar livro -->
+<section id="catalogar" class="secao" style="display:none;">
+  <h2>Catalogar Novo Livro</h2>
+  <form id="formCatalogar">
+    <input type="text" id="nomeLivro" placeholder="Título do Livro" required><br>
+    <input type="text" id="autorLivro" placeholder="Autor" required><br>
+    <textarea id="sobreLivro" placeholder="Sobre o livro (descrição)" rows="4" required></textarea><br>
+    <input type="text" id="categoriaLivro" placeholder="Categoria (ex: Romance, Ficção)" required><br>
+    <input type="text" id="codigoLivro" placeholder="Código do livro (ex: LIT001)" required><br>
+    
+    <label>Imagem da capa:</label>
+    <input type="file" id="imagemLivro" accept="image/*" required><br><br>
+    
+    <button type="submit">Catalogar Livro</button>
+  </form>
+</section>
 
   <!-- Registrar Empréstimo -->
   <section id="registro" class="secao" style="display:none;">
