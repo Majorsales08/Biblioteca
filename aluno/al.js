@@ -19,7 +19,7 @@ function carregarLivrosDisponiveis() {
 
   livros.forEach(livro => {
     const item = document.createElement("p");
-    item.textContent = ` ${livro.nome} - ${livro.autor}`;
+    item.textContent = ` ${livro.imagem} - ${livro.nome} - ${livro.sobre} - `;
     lista.appendChild(item);
   });
 }

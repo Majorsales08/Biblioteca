@@ -43,7 +43,7 @@ let emprestimos = [];
 
       livros.forEach(l => {
         const item = document.createElement("p");
-        item.textContent = `📖 ${l.nome} - ${l.autor}`;
+        item.textContent = `  ${imagem} - ${l.nome} - ${l.sobre}`;
         lista.appendChild(item);
       });
     }
