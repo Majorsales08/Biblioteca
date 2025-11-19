@@ -18,11 +18,11 @@ function carregarLivrosDisponiveis() {
   }
 
   livros.forEach(livro => {
-<<<<<<< HEAD
+
     const item = document.createElement("p");
     item.textContent = ` ${livro.imagem} - ${livro.nome} - ${livro.sobre} - `;
     lista.appendChild(item);
-=======
+
     const card = document.createElement("div");
     card.className = "livro-card";
     card.innerHTML = `
@@ -35,7 +35,7 @@ function carregarLivrosDisponiveis() {
       </div>
     `;
     lista.appendChild(card);
->>>>>>> ffd753b40f5c72c5a9c60ce3a1aec15b66e813f9
+
   });
 }
 

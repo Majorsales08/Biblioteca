@@ -145,49 +145,24 @@ form button:hover {
   to { opacity: 1; transform: translateY(0); }
 }
 
-@media (max-width: 1400px) {
+@media (max-width: 960px) {
   .secao {
-    padding: 2.5rem;
-    margin-left: 150px;
-    width: calc(100% - 300px);
+    background-color: #ffffff;
+    color: #1c1c1c;
+    padding: 45px;
+    border-radius: 15px;
+    margin-top: -570px;
+    display: none; /* escondida até ser chamada pelo JS */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    animation: fadeIn 0.5s ease-in-out; 
+    border-radius: 15px;
+    color: #0c1f4a;
+    font-weight: bold; 
+    width: 1000 px;
+    margin-left: 270px;
+    
+  
   }
+  
 }
 
-@media (max-width: 990px) {
-  .secao {
-    margin-left: 200vh;
-    width: calc(100% - 100px);
-    padding: 2rem;
-  }
-  .grid {
-    grid-template-columns: repeat(2, 1fr);
-  }
-}
-
-@media (max-width: 768px) {
-  header { flex-direction: column; text-align: center; }
-  .profile { margin: 0 auto; }
-  .grid {
-    grid-template-columns: 1fr;
-    gap: 1.5rem;
-  }
-  .grid button {
-    height: 100px;
-    font-size: 1.1rem;
-  }
-  .secao {
-    margin: 2rem auto;
-    padding: 2rem;
-    width: 95%;
-  }
-  .catalogo-grid {
-    grid-template-columns: 1fr;
-  }
-}
-
-@media (max-width: 480px) {
-  body { padding: 1rem; }
-  .profile { font-size: 1rem; padding: 0.5rem 1rem; }
-  .grid button { height: 90px; font-size: 1rem; }
-  .secao h2 { font-size: 1.8rem; }
-}

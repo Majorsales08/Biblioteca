@@ -191,10 +191,9 @@ form button:hover {
   to { opacity: 1; transform: translateY(0); }
 }
 
-<<<<<<< HEAD
 
 
-=======
+
 /* =============== RESPONSIVIDADE PERFEITA =============== */
 @media (max-width: 1600px) {
   .secao { margin-left: 300px; width: calc(100% - 350px); }
@@ -247,4 +246,4 @@ form button:hover {
   .secao h2 { font-size: 1.9rem; }
   .livro-card img { height: 280px; }
 }
->>>>>>> ffd753b40f5c72c5a9c60ce3a1aec15b66e813f9
+
