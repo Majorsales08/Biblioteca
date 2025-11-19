@@ -153,9 +153,9 @@ form button:hover {
   }
 }
 
-@media (max-width: 1200px) {
+@media (max-width: 990px) {
   .secao {
-    margin-left: 50px;
+    margin-left: 200vh;
     width: calc(100% - 100px);
     padding: 2rem;
   }

@@ -53,19 +53,19 @@ function carregarLivros() {
     return;
   }
 
-<<<<<<< HEAD
-      livros.forEach(l => {
-        const item = document.createElement("p");
-        item.textContent = `  ${imagem} - ${l.nome} - ${l.sobre}`;
-        lista.appendChild(item);
-      });
-    }
-=======
-  livros.forEach((livro, index) => {
-    const div = document.createElement("div");
-    div.style = "background:#f0f0f0; padding:15px; margin:10px 0; border-radius:10px; display:flex; justify-content:space-between; align-items:center; color:#0c1f4a;";
-    
-    div.innerHTML = `
+
+  livros.forEach(l => {
+    const item = document.createElement("p");
+    item.textContent = `  ${imagem} - ${l.nome} - ${l.sobre}`;
+    lista.appendChild(item);
+  });
+}
+
+livros.forEach((livro, index) => {
+  const div = document.createElement("div");
+  div.style = "background:#f0f0f0; padding:15px; margin:10px 0; border-radius:10px; display:flex; justify-content:space-between; align-items:center; color:#0c1f4a;";
+
+  div.innerHTML = `
       <div>
         <strong>${livro.nome}</strong> - ${livro.autor}<br>
         <small>Código: ${livro.codigo} | Categoria: ${livro.categoria}</small>
@@ -74,10 +74,9 @@ function carregarLivros() {
         Excluir
       </button>
     `;
-    lista.appendChild(div);
-  });
-}
->>>>>>> ffd753b40f5c72c5a9c60ce3a1aec15b66e813f9
+  lista.appendChild(div);
+});
+
 
 // === FUNÇÃO PARA EXCLUIR LIVRO ===
 function excluirLivro(index) {
@@ -156,8 +155,8 @@ function atualizarListaEmprestimos() {
       ${emp.status === "emprestado" ? `
       <button onclick="finalizarEmprestimo(${index})" style="background:#27ae60; color:white; border:none; padding:10px 20px; border-radius:8px; cursor:pointer; font-weight:bold;">
         Finalizar Devolução
-      </button>` : 
-      `<span style="color:#27ae60; font-weight:bold;">✓ Devolvido</span>`}
+      </button>` :
+        `<span style="color:#27ae60; font-weight:bold;">✓ Devolvido</span>`}
     `;
 
     lista.appendChild(div);
@@ -172,7 +171,7 @@ function finalizarEmprestimo(index) {
   if (emprestimos[index]) {
     emprestimos[index].status = "devolvido";
     emprestimos[index].dataDevolucao = new Date().toISOString().split("T")[0];
-    
+
     localStorage.setItem("emprestimos", JSON.stringify(emprestimos));
 
     // Atualiza histórico do aluno
